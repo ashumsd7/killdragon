@@ -88,7 +88,7 @@ new Vue({
         SendDataPositive(){
             window.sendData("OTHERS");
             this.thanks_info= true;
-            this.washing_machine= true;
+            this.washing_machine= false;
             this.ac_container= false;
             this.tv_container= false;
             this.fridge_container= false;
@@ -105,7 +105,7 @@ new Vue({
         SendDataNegative(){
             window.sendData("CHINESE");
             this.thanks_info= true;
-            this.washing_machine= true;
+            this.washing_machine= false;
             this.ac_container= false;
             this.tv_container= false;
             this.fridge_container= false;
