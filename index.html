@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>क्या चीन हमारे घर में भी?</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase.js"></script>
+    <link rel="stylesheet" href="main.css">
+    <style>
+        #app {
+            background: rgb(255, 247, 247);
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html"><img src="images/madeinchina.jpg" alt="" srcset="">Boycott China</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <!-- <a class="nav-link" href="#">Link</a> -->
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row header">
+                <div onclick="document.location.href='https://drive.google.com/file/d/1dnII_weqWleITEOnQJf4NtLJJ5_3wVH0/view?usp=sharing'" class="col-sm-3 header_items">
+                    <img src="images/removechinaapp.JPG" alt="" srcset=""> <img src="images/download.png" alt="" srcset=""> <br>
+                    <p>'REMOVE CHINA APPS' </p> 
+                </div>
+                <div class="col-sm-4">
+                    <ul>
+                        <li> <a href="https://www.republicworld.com/technology-news/apps/chinese-apps-taking-over-the-indian-app-market-know-the-top-25-apps.html">Top Chinese Apps</a> </li>
+                        <li><a href="https://www.cashify.in/best-desi-indian-alternatives-to-chinese-apps">Alternatives to chinese apps</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <button onclick="document.location.href='https://nocovid.netlify.app/'" class="btn btn-success" >LIVE COVID UPDATES</button>
+                </div>
+                <div class="col-sm-2">
+                    <button onclick="document.location.href='https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=hi'" class="btn btn-primary" >DOWNLOAD Arogya Setu App</button>
+                </div>
+            </div>
+
+            <hr>
+            <br>
+            <div class="row main-section">
+                <div class="col">
+
+
+                        <div v-if="thanks_info" class="">
+                            <img src="images/thanks.png" alt="" srcset="">
+                            <hr>
+                            <br>
+                        </div>
+
+
+                    <div v-if="smartphone_container" class="smartphone-conatiner">
+                        <div class="row">
+                            <img src="images/smartphone.png" alt="" srcset="">
+                            <p> आपके घर में Phone किस ब्रांड का है ?</p>
+                            <br>
+                            <br>
+                            <p> Brand of Phone ? </p>
+                        </div>
+                        <div class="row">
+                            <div class="selector">
+                                <div class="brand-list">
+                                    <p class="brand-list__items">
+                                    <ul>
+                                        <li v-for="item in phoneBrands"> {{item}} </li>
+                                    </ul>
+                                    <br>
+                                    <Button @click="SendDataNegative"   class="btn btn-danger">हाँ इनमे से एक है /Yes </Button>
+                                    <Button @click="SendDataPositive"  class="btn btn-primary">नहीं दूसरे कंपनी का है/घर में TV नहीं है /No
+                                    </Button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div v-if="ac_container" class="ac-conatiner">
+                        <div class="row">
+                            <img src="images/airconditioner.png" alt="" srcset="">
+                            <p>अगर आपके घर में AC है तो किस ब्रांड का है ?</p>
+                            <br>
+                            <p>Brand of AC ?</p>
+                        </div>
+                        <div class="row">
+                            <div class="selector">
+                                <div class="brand-list">
+                                    <p class="brand-list__items">
+                                    <ul>
+                                        <li v-for="item in ACBrands"> {{item}} </li>
+                                    </ul>
+                                    <br>
+                                    <Button @click="SendDataNegative"  class="btn btn-danger">हाँ इनमे से एक है / Yes </Button>
+                                    <Button @click="SendDataPositive"  class="btn btn-primary">नहीं दूसरे कंपनी का है/घर में AC नहीं है / No
+                                    </Button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="cooler_container" class="cooler-conatiner">
+                        <div class="row">
+                            <img src="images/cooler.png" alt="" srcset="">
+                            <p>अगर आपके घर में कूलर है तो किस ब्रांड का है ?</p>
+
+                            <p>Brand of Cooler ? </p>
+                        </div>
+                        <div class="row">
+                            <div class="selector">
+                                <div class="brand-list">
+                                    <p class="brand-list__items">
+                                        <br>
+                                        <Button @click="SendDataNegative"  class="btn btn-danger">हाँ Chinese ब्रांड का कूलर है /YES </Button>
+                                        <Button @click="SendDataPositive"  class="btn btn-primary">घर में कूलर नहीं है/ ब्रांड नहीं मालूम /NO
+                                        </Button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div v-if="fridge_container" class="fridge-conatiner">
+                        <div class="row">
+                            <img src="images/fridge.png" alt="" srcset="">
+                            <p> आपके घर में फ्रिज किस ब्रांड का है ?</p>
+                            <br>
+                            <br>
+                            <p> Brand of Fridge/Refrigerator ? </p>
+                        </div>
+                        <div class="row">
+                            <div class="selector">
+                                <div class="brand-list">
+                                    <p class="brand-list__items">
+                                    <ul>
+                                        <li v-for="item in fridgeBrands"> {{item}} </li>
+                                    </ul>
+                                    <br>
+                                    <Button @click="SendDataNegative"  class="btn btn-danger">हाँ इनमे से एक है /Yes </Button>
+                                    <Button @click="SendDataPositive"  class="btn btn-primary">नहीं दूसरे कंपनी का है/घर में फ्रिज नहीं है /No
+                                    </Button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div v-if="tv_container" class="fridge-conatiner">
+                        <div class="row">
+                            <img src="images/television.png" alt="" srcset="">
+                            <p> आपके घर में टेलीविज़न किस ब्रांड का है ?</p>
+                            <br>
+                            <br>
+                            <p> Brand of TV? </p>
+                        </div>
+                        <div class="row">
+                            <div class="selector">
+                                <div class="brand-list">
+                                    <p class="brand-list__items">
+                                    <ul>
+                                        <li v-for="item in tvBrands"> {{item}} </li>
+                                    </ul>
+                                    <br>
+                                    <Button @click="SendDataNegative"  class="btn btn-danger">हाँ इनमे से एक है /Yes </Button>
+                                    <Button @click="SendDataPositive"  class="btn btn-primary">नहीं दूसरे कंपनी का है/घर में टेलीविज़न नहीं है /No
+                                    </Button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div v-if="washing_machine" class="fridge-conatiner">
+                        <div class="row">
+                            <img src="images/washingmachine.png" alt="" srcset="">
+                            <p> आपके घर में वाशिंग मशीन किस ब्रांड का है ?</p>
+                            <br>
+                            <br>
+                            <p> Brand of Washing Machine? </p>
+                        </div>
+                        <div class="row">
+                            <div class="selector">
+                                <div class="brand-list">
+                                    <p class="brand-list__items">
+                                    <ul>
+                                        <li v-for="item in WashingMachineBrands"> {{item}} </li>
+                                    </ul>
+                                    <br>
+                                    <Button @click="SendDataNegative" class="btn btn-danger">हाँ इनमे से एक है /Yes </Button>
+                                    
+                                    <Button @click="SendDataPositive"  class="btn btn-primary">नहीं दूसरे कंपनी का है/घर में वाशिंग मशीन नहीं है
+                                        /No </Button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                </div>
+            </div>
+
+            <div v-if="show_main_section2" class="">
+              <div class="row"> <h2> </h2> <h3> <strong>एक सर्वे: </strong>    निम्न  एक्सेसरीज में से कोई  चुनें |</h3> </div>
+                <h4>Select any Accessories to vote.</h4>
+              
+            </div>
+           <hr>
+
+            <div v-if="show_main_section2" class="row main-section2">
+                <div @click="show_smartphone_conatiner" class="col-sm-3 main-section_item ">
+                    <img src="images/smartphone.png" alt="" srcset="">
+                    <p>SMARTPHONE</p>
+                </div>
+                <div @click="show_ac_conatiner" class="col-sm-3 main-section_item">
+                    <img src="images/airconditioner.png" alt="" srcset="">
+                    <p>AC</p>
+                </div>
+                <div @click="show_cooler_conatiner" class="col-sm-3 main-section_item">
+                    <img src="images/cooler.png" alt="" srcset="">
+                    <p>COOLER</p>
+                </div>
+
+
+            </div>
+
+
+            <div v-if="show_main_section2" class="row main-sectio3">
+
+                <div @click="show_fridge_conatiner" class="col-sm-3 main-section_item">
+                    <img src="images/fridge.png" alt="" srcset="">
+                    <p>FRIDGE</p>
+                </div>
+
+
+                <div @click="show_tv_conatiner" class="col-sm-3 main-section_item">
+                    <img src="images/television.png" alt="" srcset="">
+                    <p>TV</p>
+                </div>
+
+                <div @click="show_washingmachine_conatiner" class="col-sm-3 main-section_item">
+                    <img src="images/washingmachine.png" alt="" srcset="">
+                    <p>WASHING MACHINE</p>
+                </div>
+
+            </div>
+
+            <div class="row footer">
+                <div class="col">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+           <small> WE LOVE INDIA .</small>
+           <a href='https://freehitcounters.org/'></a> <script type='text/javascript' src='https://www.freevisitorcounters.com/auth.php?id=35cb36aaecf614ff0df769ae5d2e71d47dd65ad9'></script>
+           <script type="text/javascript" src="https://www.freevisitorcounters.com/en/home/counter/704833/t/5"></script>
+        </div>
+    </div>
+
+    <hr>
+    <hr>
+    <strong>Stay Safe </strong>
+    <hr>
+    <hr>
+    <script src="app.js"></script>
+    <script src="firebase.js"></script>
+</body>
+
+</html>
