@@ -11,6 +11,7 @@ new Vue({
 
             show_main_section2:true,
             thanks_info:false,
+         
 
             phoneBrands: [ 'ALACATEL', 'Coolpad', 'Gionee', 'Huawei', 'lenovo', 'realme', 'OnePlus', 'Oppo' , 'MI' , 'ZTE' ,'Other Chinese brand '],
             ACBrands: [ 'HISETISE', 'Midea', 'Other Chinese Brand', ],
