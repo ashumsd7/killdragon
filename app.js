@@ -17,7 +17,7 @@ new Vue({
             ACBrands: [ 'HISETISE', 'Midea', 'Other Chinese Brand', ],
             fridgeBrands:['Haier','TCL','Other Chinese Brand'],
             tvBrands:['Mi','realme', 'Letv','TCL','Other Chinese Brand'],
-            WashingMachineBrands: ['Haier','Siemens','TCL','Other Chinese Brand']
+            WashingMachineBrands: ['Haier','TCL','Other Chinese Brand']
 
         }
     },
